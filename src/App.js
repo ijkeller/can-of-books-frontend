@@ -10,12 +10,12 @@ import {
 } from "react-router-dom";
 
 
-let LAB = process.env.REACT_APP_LAB_SERVER;
-let DEPLOYED = process.env.REACT_APP_DEPLOYED_SERVER;
-let ACTIVE_SERVER =
-  LAB
-  // DEPLOYED
-  ;
+// let LAB = process.env.REACT_APP_LAB_SERVER;
+// let DEPLOYED = process.env.REACT_APP_DEPLOYED_SERVER;
+// let ACTIVE_SERVER =
+//   LAB
+//   // DEPLOYED
+//   ;
 
 
 class App extends React.Component {
