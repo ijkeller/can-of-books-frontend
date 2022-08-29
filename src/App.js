@@ -1,7 +1,7 @@
 import React from 'react';
-import Header from './Header';
-import Footer from './Footer';
-import BestBooks from './BestBooks';
+import Header from './Components/Header';
+import Footer from './Components/Footer';
+import BestBooks from './Components/BestBooks';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {
   BrowserRouter as Router,
@@ -9,14 +9,27 @@ import {
   Route
 } from "react-router-dom";
 
+
+let LAB = process.env.REACT_APP_LAB_SERVER;
+let DEPLOYED = process.env.REACT_APP_DEPLOYED_SERVER;
+let ACTIVE_SERVER =
+  LAB
+  // DEPLOYED
+  ;
+
+
 class App extends React.Component {
+
+
+
+
   render() {
     return (
       <>
         <Router>
           <Header />
           <Routes>
-            <Route 
+            <Route
               exact path="/"
               element={<BestBooks />}
             >
