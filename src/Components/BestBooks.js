@@ -2,6 +2,7 @@ import React from 'react';
 import Carousel from 'react-bootstrap/Carousel';
 import Button from 'react-bootstrap/Button';
 import BookFormModal from './BookFormModal';
+import UpdateBook from './UpdateBook.js';
 import axios from 'axios';
 
 class BestBooks extends React.Component {
@@ -13,11 +14,10 @@ class BestBooks extends React.Component {
     }
   }
 
-  /* TODO: Make a GET request to your API to fetch all the books from the database  */
   getBooks = async () => {
     try {
       let booksUrl = `${process.env.REACT_APP_SERVER}/books`
-      console.log(booksUrl)
+      // console.log(booksUrl)
       let booksData = await axios.get(booksUrl)
       this.setState({ books: booksData.data })
 
@@ -27,7 +27,7 @@ class BestBooks extends React.Component {
   }
 
   handleAddBook = async (bookInfo) => {
-    console.log(bookInfo);
+    // console.log(bookInfo);
     try {
       const response = await axios.post(`${process.env.REACT_APP_SERVER}/books`, bookInfo);
       const addBook = response.data;
@@ -43,24 +43,25 @@ class BestBooks extends React.Component {
     try {
       console.log(`bookToRemove: ${bookToRemove}`)
       const response = await axios.delete(`${process.env.REACT_APP_SERVER}/books/${bookToRemove._id}`);
-      console.log(response.status);
+      console.log('response status: ', response.status);
 
       const filterBooks = this.state.books.filter(book => {
         console.table(book)
         return book._id !== bookToRemove._id;
       })
 
-      this.setState=({
+      this.setState = ({
         books: filterBooks
       })
 
-    } catch(error) {
+    } catch (error) {
       console.log('Error: ', error)
     }
   }
 
   handleSubmit = (e) => {
     e.preventDefault();
+    console.log('status value: ', e.target.status.value)
     this.handleAddBook({
       title: e.target.title.value,
       description: e.target.description.value,
@@ -71,6 +72,8 @@ class BestBooks extends React.Component {
   componentDidMount() {
     this.getBooks();
   }
+
+  getImage = `https://picsum.photos/200/300`;
 
   render() {
     console.log(this.state.books)
@@ -87,12 +90,13 @@ class BestBooks extends React.Component {
                 {this.state.books.map((book, i) => {
                   return (
                     <Carousel.Item key={i}>
-                      <img src='https://picsum.photos/200/300' alt='random from picsum' />
+                      <img src={this.getImage} alt='random from picsum' />
                       <Carousel.Caption >
                         <h3 >{book.title}</h3>
                         <p>{book.description}</p>
                         <p>Status: {book.status} </p>
-                      <Button variant="secondary" onClick={() => this.handleRemoveBook(book)} >Remove Book</Button>
+                        <UpdateBook />
+                        <Button variant="secondary" onClick={() => this.handleRemoveBook(book)} >Remove Book</Button>
                       </Carousel.Caption>
                     </Carousel.Item>
                   )

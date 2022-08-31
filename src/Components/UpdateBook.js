@@ -1,9 +1,7 @@
 import React from 'react';
-import Button from 'react-bootstrap/Button';
-import Form from 'react-bootstrap/Form';
-import Modal from 'react-bootstrap/Modal';
 
-class BookFormModal extends React.Component {
+
+class UpdateBook extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -19,14 +17,27 @@ class BookFormModal extends React.Component {
         this.setState({ showModal: false })
     }
 
+    handleSubmit = (e) => {
+        e.preventDefault();
+
+        let bookToUpdate = {
+            title: e.target.title.value || this.props.book.title,
+            description: e.target.description.value || this.props.book.description,
+            status: e.target.status.value || this.props.book.status,
+            _id: this.props.book._id,
+            __v: this.props.book.__v
+        }
+
+        this.props.handleUpdateBook(bookToUpdate);
+    }
 
     render() {
         return (
             <>
-                <Button variant="secondary" onClick={this.handleOpen} >Add Book</Button>
+                <Button variant="secondary" onClick={this.handleOpen} >Update Book</Button>
                 <Modal show={this.state.showModal} onHide={this.handleClose} centered className='modal' >
                     <Modal.Header closeButton></Modal.Header>
-                    <Modal.Title>Add Book</Modal.Title>
+                    <Modal.Title>Update Book</Modal.Title>
                     <Modal.Body>
                         <Form onSubmit={this.props.handleSubmit}>
                             <Form.Group className="mb-3" controlId="title">
@@ -41,7 +52,7 @@ class BookFormModal extends React.Component {
                                     label="Has this book been read?"
                                 />
                             </Form.Group>
-                            <Button variant="secondary" type="submit" onClick={this.handleClose} >Submit</Button>
+                            <Button variant="secondary" type="submit" onClick={this.handleSubmit} >Submit</Button>
                         </Form>
                     </Modal.Body>
                     <Modal.Footer>
@@ -52,4 +63,4 @@ class BookFormModal extends React.Component {
     }
 }
 
-export default BookFormModal;
+export default UpdateBook;
