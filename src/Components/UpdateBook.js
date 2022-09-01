@@ -1,4 +1,7 @@
 import React from 'react';
+import Button from 'react-bootstrap/Button';
+import Form from 'react-bootstrap/Form';
+import Modal from 'react-bootstrap/Modal';
 
 
 class UpdateBook extends React.Component {
@@ -17,9 +20,9 @@ class UpdateBook extends React.Component {
         this.setState({ showModal: false })
     }
 
-    handleUpdateSubmit = (e) => {
+    handleSubmit = (e) => {
         e.preventDefault();
-
+        console.log('e.target.description: ', e.target.description)
         let bookToUpdate = {
             title: e.target.title.value || this.props.book.title,
             description: e.target.description.value || this.props.book.description,
@@ -52,7 +55,7 @@ class UpdateBook extends React.Component {
                                     label="Has this book been read?"
                                 />
                             </Form.Group>
-                            <Button variant="secondary" type="submit" onClick={this.handleUpdateSubmit} >Submit</Button>
+                            <Button variant="secondary" type="submit" onClick={this.handleClose} >Submit</Button>
                         </Form>
                     </Modal.Body>
                     <Modal.Footer>
