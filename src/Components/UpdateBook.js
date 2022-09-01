@@ -17,7 +17,7 @@ class UpdateBook extends React.Component {
         this.setState({ showModal: false })
     }
 
-    handleSubmit = (e) => {
+    handleUpdateSubmit = (e) => {
         e.preventDefault();
 
         let bookToUpdate = {
@@ -48,11 +48,11 @@ class UpdateBook extends React.Component {
                             </Form.Group>
                             <Form.Group className="mb-3" controlId="status">
                                 <Form.Check
-                                    type="switch"
+                                    type="checkbox"
                                     label="Has this book been read?"
                                 />
                             </Form.Group>
-                            <Button variant="secondary" type="submit" onClick={this.handleSubmit} >Submit</Button>
+                            <Button variant="secondary" type="submit" onClick={this.handleUpdateSubmit} >Submit</Button>
                         </Form>
                     </Modal.Body>
                     <Modal.Footer>

@@ -37,7 +37,7 @@ class BookFormModal extends React.Component {
                             </Form.Group>
                             <Form.Group className="mb-3" controlId="status">
                                 <Form.Check
-                                    type="switch"
+                                    type="checkbox"
                                     label="Has this book been read?"
                                 />
                             </Form.Group>

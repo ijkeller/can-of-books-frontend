@@ -42,6 +42,18 @@ class BestBooks extends React.Component {
   handleUpdateBook = async (bookToUpdate) => {
     try {
       console.log('bookToUpdate: ', bookToUpdate)
+      let url = `${process.env.REACT_APP_SERVER}/books/${bookToUpdate._id}`;
+      let updatedBook = await axios.put(url, bookToUpdate)
+      
+      let updatedBookArray = this.state.books.map(origBook => {
+        return origBook._id === bookToUpdate._id
+        ? updatedBook.data
+        : origBook
+      });
+      this.setState({
+        books: updatedBookArray
+      })
+
     } catch (error) {
       console.log('Error: ', error)
     }
