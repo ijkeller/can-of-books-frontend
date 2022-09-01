@@ -39,6 +39,14 @@ class BestBooks extends React.Component {
     }
   }
 
+  handleUpdateBook = async (bookToUpdate) => {
+    try {
+      console.log('bookToUpdate: ', bookToUpdate)
+    } catch (error) {
+      console.log('Error: ', error)
+    }
+  }
+
   handleRemoveBook = async (bookToRemove) => {
     try {
       console.log(`bookToRemove: ${bookToRemove}`)
@@ -95,7 +103,7 @@ class BestBooks extends React.Component {
                         <h3 >{book.title}</h3>
                         <p>{book.description}</p>
                         <p>Status: {book.status} </p>
-                        <UpdateBook />
+                        <UpdateBook book={this.book} handleUpdateBook={this.handleUpdateBook} />
                         <Button variant="secondary" onClick={() => this.handleRemoveBook(book)} >Remove Book</Button>
                       </Carousel.Caption>
                     </Carousel.Item>
