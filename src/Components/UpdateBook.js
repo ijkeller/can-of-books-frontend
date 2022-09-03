@@ -42,7 +42,7 @@ class UpdateBook extends React.Component {
                     <Modal.Header closeButton></Modal.Header>
                     <Modal.Title>Update Book</Modal.Title>
                     <Modal.Body>
-                        <Form onSubmit={this.props.handleSubmit}>
+                        <Form onSubmit={this.handleSubmit}>
                             <Form.Group className="mb-3" controlId="title">
                                 <Form.Control type="text" placeholder='Enter Book Name' />
                             </Form.Group>
