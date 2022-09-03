@@ -44,6 +44,9 @@ class BestBooks extends React.Component {
       console.log('bookToUpdate: ', bookToUpdate)
       let url = `${process.env.REACT_APP_SERVER}/books/${bookToUpdate._id}`;
       let updatedBook = await axios.put(url, bookToUpdate)
+
+      console.log('updatedBook.data:')
+      console.table(updatedBook)
       
       let updatedBookArray = this.state.books.map(origBook => {
         return origBook._id === bookToUpdate._id
@@ -112,10 +115,10 @@ class BestBooks extends React.Component {
                     <Carousel.Item key={i}>
                       <img src={this.getImage} alt='random from picsum' />
                       <Carousel.Caption >
-                        <h3 >{book.title}</h3>
-                        <p>{book.description}</p>
-                        <p>Status: {book.status} </p>
-                        <UpdateBook book={book} handleUpdateBook={this.handleUpdateBook} />
+                        <h3 className='carousel-title' >{book.title}</h3>
+                        <p className='carousel-description' >{book.description}</p>
+                        <p className='carousel-read' >Read: {book.status} </p>
+                        <UpdateBook book={book} handleUpdateBook={() => this.handleUpdateBook(book)} />
                         <Button variant="secondary" onClick={() => this.handleRemoveBook(book)} >Remove Book</Button>
                       </Carousel.Caption>
                     </Carousel.Item>
