@@ -118,7 +118,7 @@ class BestBooks extends React.Component {
                         <h3 className='carousel-title' >{book.title}</h3>
                         <p className='carousel-description' >{book.description}</p>
                         <p className='carousel-read' >Read: {book.status} </p>
-                        <UpdateBook book={book} handleUpdateBook={() => this.handleUpdateBook(book)} />
+                        <UpdateBook book={book} handleUpdateBook={this.handleUpdateBook} />
                         <Button variant="secondary" onClick={() => this.handleRemoveBook(book)} >Remove Book</Button>
                       </Carousel.Caption>
                     </Carousel.Item>
