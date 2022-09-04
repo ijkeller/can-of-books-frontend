@@ -14,10 +14,12 @@ class BestBooks extends React.Component {
     }
   }
 
+  booksUrl = booksUrl;
+
   getBooks = async () => {
     try {
-      let booksUrl = `${process.env.REACT_APP_SERVER}/books`
-      // console.log(booksUrl)
+      let booksUrl = `${booksUrl}/books`
+      console.log(booksUrl)
       let booksData = await axios.get(booksUrl)
       this.setState({ books: booksData.data })
 
@@ -29,7 +31,7 @@ class BestBooks extends React.Component {
   handleAddBook = async (bookInfo) => {
     // console.log(bookInfo);
     try {
-      const response = await axios.post(`${process.env.REACT_APP_SERVER}/books`, bookInfo);
+      const response = await axios.post(`${booksUrl}/books`, bookInfo);
       const addBook = response.data;
       console.log('add book: ')
       console.table(addBook)
@@ -42,7 +44,7 @@ class BestBooks extends React.Component {
   handleUpdateBook = async (bookToUpdate) => {
     try {
       console.log('bookToUpdate: ', bookToUpdate)
-      let url = `${process.env.REACT_APP_SERVER}/books/${bookToUpdate._id}`;
+      let url = `${booksUrl}/books/${bookToUpdate._id}`;
       let updatedBook = await axios.put(url, bookToUpdate)
 
       console.log('updatedBook.data:')
@@ -65,7 +67,7 @@ class BestBooks extends React.Component {
   handleRemoveBook = async (bookToRemove) => {
     try {
       console.log(`bookToRemove: ${bookToRemove}`)
-      const response = await axios.delete(`${process.env.REACT_APP_SERVER}/books/${bookToRemove._id}`);
+      const response = await axios.delete(`${booksUrl}/books/${bookToRemove._id}`);
       console.log('response status: ', response.status);
 
       const filterBooks = this.state.books.filter(book => {
