@@ -71,7 +71,6 @@ class BestBooks extends React.Component {
       console.log('response status: ', response.status);
 
       const filterBooks = this.state.books.filter(book => {
-        console.table(book)
         return book._id !== bookToRemove._id;
       })
 
