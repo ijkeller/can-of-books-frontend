@@ -21,8 +21,6 @@ class BestBooks extends React.Component {
       let getbooksUrl = `${this.booksUrl}/books`
       console.log(getbooksUrl)
       let getbooksData = await axios.get(getbooksUrl)
-      console.log('getBooksData: ')
-      console.table(getbooksData)
       this.setState({ books: getbooksData.data })
 
     } catch (error) {
