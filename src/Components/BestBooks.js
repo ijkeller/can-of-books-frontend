@@ -18,10 +18,10 @@ class BestBooks extends React.Component {
 
   getBooks = async () => {
     try {
-      let booksUrl = `${booksUrl}/books`
-      console.log(booksUrl)
-      let booksData = await axios.get(booksUrl)
-      this.setState({ books: booksData.data })
+      let getbooksUrl = `${booksUrl}/books`
+      console.log(getbooksUrl)
+      let getbooksData = await axios.get(getbooksUrl)
+      this.setState({ books: getbooksData.data })
 
     } catch (error) {
       console.log("Error: ", error.response)
