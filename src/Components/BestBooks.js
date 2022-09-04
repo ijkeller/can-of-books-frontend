@@ -14,7 +14,7 @@ class BestBooks extends React.Component {
     }
   }
 
-  booksUrl = booksUrl;
+  booksUrl = process.env.REACT_APP_SERVER;
 
   getBooks = async () => {
     try {
